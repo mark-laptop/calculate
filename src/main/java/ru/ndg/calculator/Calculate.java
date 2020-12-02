@@ -2,10 +2,12 @@ package ru.ndg.calculator;
 
 import ru.ndg.calculator.common.Expression;
 import ru.ndg.calculator.common.ParserExpression;
-import ru.ndg.calculator.exception.IncorrectInputExpressionException;
 import ru.ndg.calculator.exception.IncorrectInputOperationException;
 
-import static ru.ndg.calculator.common.Operations.*;
+import static ru.ndg.calculator.common.Operations.ADD;
+import static ru.ndg.calculator.common.Operations.DIVIDE;
+import static ru.ndg.calculator.common.Operations.MULTIPLY;
+import static ru.ndg.calculator.common.Operations.SUBTRACT;
 
 /**
  * Сlass for evaluating an incoming expression
