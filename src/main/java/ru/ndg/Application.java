@@ -27,6 +27,7 @@ public class Application {
     }
 
     private static void showDialog() {
-        System.out.println("Введите тра-та-та");
+        System.out.println("Введите римские или арабские числа одной строчкой, знак операции между ними. Пример (I + II) или (1 + 2) \n"
+        + "Для выхода введите exit");
     }
 }

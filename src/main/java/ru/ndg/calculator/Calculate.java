@@ -2,6 +2,7 @@ package ru.ndg.calculator;
 
 import ru.ndg.calculator.common.Expression;
 import ru.ndg.calculator.common.ParserExpression;
+import ru.ndg.calculator.exception.IncorrectInputExpressionException;
 import ru.ndg.calculator.exception.IncorrectInputOperationException;
 
 import static ru.ndg.calculator.common.Operations.*;
@@ -11,8 +12,8 @@ import static ru.ndg.calculator.common.Operations.*;
  */
 public final class Calculate {
 
-    public static String getResult(String RawInputExpression) {
-        Expression expression = ParserExpression.parse(RawInputExpression);
+    public static String getResult(String rawInputExpression) {
+        Expression expression = ParserExpression.parse(rawInputExpression);
 
         String operation = expression.getOperation();
 
@@ -25,7 +26,7 @@ public final class Calculate {
         } else if (DIVIDE.getOperation().equals(operation)) {
             return divide(expression);
         } else {
-            throw new IncorrectInputOperationException("Input wrong operation should be '+, -, /, *'");
+            throw new IncorrectInputOperationException("Не верный оператор должен быть '+, -, /, *'");
         }
     }
 

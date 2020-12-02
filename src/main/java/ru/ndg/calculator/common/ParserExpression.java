@@ -42,7 +42,8 @@ public final class ParserExpression {
 
     public static Expression parse(String rawInputExpression) {
 
-        if (Objects.isNull(rawInputExpression) || rawInputExpression.isEmpty()) throw new IncorrectInputExpressionException("Данные не должны быть пустыми!");
+        if (Objects.isNull(rawInputExpression) || rawInputExpression.isEmpty())
+            throw new IncorrectInputExpressionException("Данные не должны быть пустыми!");
 
         String[] arrayInputExpression = new String[3];
         try {
@@ -74,6 +75,7 @@ public final class ParserExpression {
     private static void parseStringToStringArray(String[] arrayInputExpression, String inputString) {
         int index = 0;
         String[] arrayString = inputString.split("\\s");
+        if (arrayString.length < 3) throw new IncorrectInputExpressionException("Ввели не верное выражение!");
         for (String element : arrayString) {
             if (!element.isEmpty()) {
                 arrayInputExpression[index] = element;
@@ -98,7 +100,6 @@ public final class ParserExpression {
     }
 
 
-
     private static String romanToArabic(String input) {
         String romanDigit = input.toUpperCase();
         int result = 0;
@@ -107,17 +108,32 @@ public final class ParserExpression {
 
         int index = 0;
 
+        int ICount = 0;
+        int XCount = 0;
+        int CCount = 0;
+        int MCount = 0;
+        int VCount = 0;
+        int LCount = 0;
+        int DCount = 0;
+
         while ((romanDigit.length() > 0) && (index < digits.size())) {
             Digit symbol = digits.get(index);
             if (romanDigit.startsWith(symbol.name())) {
                 result += symbol.getDigit();
+                if (symbol.name().contains("I")) ICount++;
+                if (symbol.name().contains("X")) XCount++;
+                if (symbol.name().contains("C")) CCount++;
+                if (symbol.name().contains("M")) MCount++;
+                if (symbol.name().contains("V")) VCount++;
+                if (symbol.name().contains("L")) LCount++;
+                if (symbol.name().contains("D")) DCount++;
                 romanDigit = romanDigit.substring(symbol.name().length());
             } else {
                 index++;
             }
         }
 
-        if (romanDigit.length() > 0) {
+        if (romanDigit.length() > 0 || !isCorrectDigit(ICount, XCount, CCount, MCount, VCount, LCount, DCount)) {
             throw new DigitOutOfRangeException("Значение: " + input + " не может быть преобразована в римскую цифру");
         }
 
@@ -147,7 +163,7 @@ public final class ParserExpression {
         return stringBuilder.toString();
     }
 
-    public static boolean isRomeDigit(String inputData) {
+    private static boolean isRomeDigit(String inputData) {
         if (Objects.isNull(inputData) || inputData.isEmpty()) return false;
         try {
             romanToArabic(inputData);
@@ -155,5 +171,15 @@ public final class ParserExpression {
             return false;
         }
         return true;
+    }
+
+    private static boolean isCorrectDigit(int ICount, int XCount, int CCount, int MCount, int VCount, int LCount, int DCount) {
+        if (ICount > 3) return false;
+        if (XCount > 3) return false;
+        if (CCount > 3) return false;
+        if (VCount > 1) return false;
+        if (LCount > 1) return false;
+        if (DCount > 1) return false;
+        return MCount <= 3;
     }
 }
