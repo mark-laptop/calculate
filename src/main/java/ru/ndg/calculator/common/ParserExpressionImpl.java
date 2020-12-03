@@ -141,7 +141,7 @@ public class ParserExpressionImpl implements ParseExpression {
         }
 
         if (romanNumeric.length() > 0 || !isCorrectNumeric(ICount, XCount, CCount, MCount, VCount, LCount, DCount)) {
-            throw new NumericOutOfRangeException("Значение: " + input + " не может быть преобразована в римскую цифру");
+            throw new NumericOutOfRangeException("Значение: " + input + " не может быть преобразовано в римскую цифру");
         }
 
         return String.valueOf(result);
