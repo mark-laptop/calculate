@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
  */
 public final class ParserExpression {
 
+    private static boolean isRomeDigit;
+
     /**
      * Enum to help identify digits
      */
@@ -42,6 +44,8 @@ public final class ParserExpression {
 
     public static Expression parse(String rawInputExpression) {
 
+        ParserExpression.isRomeDigit = false;
+
         if (Objects.isNull(rawInputExpression) || rawInputExpression.isEmpty())
             throw new IncorrectInputExpressionException("Данные не должны быть пустыми!");
 
@@ -52,7 +56,6 @@ public final class ParserExpression {
             throw new IncorrectInputExpressionException("Ввели не верное выражение!");
         }
 
-        boolean isRomeDigit = isRomeDigit(arrayInputExpression[0]);
         parseRomeDigitToArabic(arrayInputExpression);
 
         int firstOperand;
@@ -94,6 +97,7 @@ public final class ParserExpression {
             throw new IncorrectInputOperandException("Цифры должны быть все или арабскими или римскими!");
         }
         if (isRomeFirstDigit) {
+            ParserExpression.isRomeDigit = true;
             arrayInputExpression[0] = romanToArabic(rawFirstOperand);
             arrayInputExpression[2] = romanToArabic(rawSecondOperand);
         }
