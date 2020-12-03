@@ -2,7 +2,6 @@ package ru.ndg.calculator;
 
 import ru.ndg.calculator.common.Expression;
 import ru.ndg.calculator.common.ParseExpression;
-import ru.ndg.calculator.common.ParserExpressionImpl;
 import ru.ndg.calculator.exception.IncorrectInputOperationException;
 
 import static ru.ndg.calculator.common.Operations.ADD;
