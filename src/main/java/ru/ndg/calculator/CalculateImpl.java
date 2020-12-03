@@ -33,7 +33,7 @@ public final class CalculateImpl implements Calculate {
         } else if (DIVIDE.getOperation().equals(operation)) {
             result = divide(expression);
         } else {
-            throw new IncorrectInputOperationException("Не верный оператор должен быть '+, -, /, *'");
+            throw new IncorrectInputOperationException("Не верный оператор, должен быть '+, -, /, *'");
         }
 
         return expression.isRomeNumeric() ? parseExpression.arabicNumericToRoman(result) : String.valueOf(result);
