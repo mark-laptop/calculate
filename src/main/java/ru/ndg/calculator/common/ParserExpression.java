@@ -120,13 +120,15 @@ public final class ParserExpression {
             Digit symbol = digits.get(index);
             if (romanDigit.startsWith(symbol.name())) {
                 result += symbol.getDigit();
-                if (symbol.name().contains("I")) ICount++;
-                if (symbol.name().contains("X")) XCount++;
-                if (symbol.name().contains("C")) CCount++;
-                if (symbol.name().contains("M")) MCount++;
-                if (symbol.name().contains("V")) VCount++;
-                if (symbol.name().contains("L")) LCount++;
-                if (symbol.name().contains("D")) DCount++;
+
+                if (symbol.name().contains(Digit.I.name())) ICount++;
+                if (symbol.name().contains(Digit.X.name())) XCount++;
+                if (symbol.name().contains(Digit.C.name())) CCount++;
+                if (symbol.name().contains(Digit.M.name())) MCount++;
+                if (symbol.name().contains(Digit.V.name())) VCount++;
+                if (symbol.name().contains(Digit.L.name())) LCount++;
+                if (symbol.name().contains(Digit.D.name())) DCount++;
+
                 romanDigit = romanDigit.substring(symbol.name().length());
             } else {
                 index++;
