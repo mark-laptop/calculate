@@ -162,7 +162,7 @@ public final class ParserExpression {
         int index = 0;
         StringBuilder stringBuilder = new StringBuilder();
 
-        while (/*(number > 0) && */(index < digits.size())) {
+        while ((index < digits.size())) {
             Digit currentSymbol = digits.get(index);
             if (currentSymbol.getDigit() <= number) {
                 stringBuilder.append(currentSymbol.name());
