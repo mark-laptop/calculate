@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 /**
  * Сlass for parsing an incoming string in an expression
  */
-public final class ParserExpression {
+public class ParserExpressionImpl implements ParseExpression {
 
-    private static boolean isRomeDigit;
+    private boolean isRomeDigit;
 
     /**
      * Enum to help identify digits
@@ -42,9 +42,10 @@ public final class ParserExpression {
         }
     }
 
-    public static Expression parse(String rawInputExpression) {
+    @Override
+    public Expression parse(String rawInputExpression) {
 
-        ParserExpression.isRomeDigit = false;
+        isRomeDigit = false;
 
         if (Objects.isNull(rawInputExpression) || rawInputExpression.isEmpty())
             throw new IncorrectInputExpressionException("Данные не должны быть пустыми!");
@@ -71,11 +72,11 @@ public final class ParserExpression {
             throw new DigitOutOfRangeException("Числа должны быть в диапазоне от 1 до 10!");
         }
         String operation = arrayInputExpression[1];
-        return new Expression(firstOperand, operation, secondOperand, isRomeDigit);
+        return new ExpressionImpl(firstOperand, operation, secondOperand, isRomeDigit);
 
     }
 
-    private static void parseStringToStringArray(String[] arrayInputExpression, String inputString) {
+    private void parseStringToStringArray(String[] arrayInputExpression, String inputString) {
         int index = 0;
         String[] arrayString = inputString.split("\\s");
         if (arrayString.length < 3) throw new IncorrectInputExpressionException("Ввели не верное выражение!");
@@ -87,7 +88,7 @@ public final class ParserExpression {
         }
     }
 
-    private static void parseRomeDigitToArabic(String[] arrayInputExpression) {
+    private void parseRomeDigitToArabic(String[] arrayInputExpression) {
         String rawFirstOperand = arrayInputExpression[0].trim();
         String rawSecondOperand = arrayInputExpression[2].trim();
         boolean isRomeFirstDigit = isRomeDigit(rawFirstOperand);
@@ -97,14 +98,14 @@ public final class ParserExpression {
             throw new IncorrectInputOperandException("Цифры должны быть все или арабскими или римскими!");
         }
         if (isRomeFirstDigit) {
-            ParserExpression.isRomeDigit = true;
-            arrayInputExpression[0] = romanToArabic(rawFirstOperand);
-            arrayInputExpression[2] = romanToArabic(rawSecondOperand);
+            isRomeDigit = true;
+            arrayInputExpression[0] = romanNumericToArabic(rawFirstOperand);
+            arrayInputExpression[2] = romanNumericToArabic(rawSecondOperand);
         }
     }
 
 
-    private static String romanToArabic(String input) {
+    public String romanNumericToArabic(String input) {
         String romanDigit = input.toUpperCase();
         int result = 0;
 
@@ -146,15 +147,17 @@ public final class ParserExpression {
         return String.valueOf(result);
     }
 
-    public static String arabicDigitToRoman(int number) {
-        if (number > 4000) {
-            throw new DigitOutOfRangeException(number + " римское число должно быть не болше 4000");
+    @Override
+    public String arabicNumericToRoman(int numeric) {
+
+        if (numeric > 4000) {
+            throw new DigitOutOfRangeException(numeric + " римское число должно быть не болше 4000");
         }
 
         boolean isNegative = false;
-        if (number < 0) {
+        if (numeric < 0) {
             isNegative = true;
-            number = number * -1;
+            numeric = numeric * -1;
         }
 
         List<Digit> digits = Digit.getReverseSortedValues();
@@ -164,9 +167,9 @@ public final class ParserExpression {
 
         while ((index < digits.size())) {
             Digit currentSymbol = digits.get(index);
-            if (currentSymbol.getDigit() <= number) {
+            if (currentSymbol.getDigit() <= numeric) {
                 stringBuilder.append(currentSymbol.name());
-                number -= currentSymbol.getDigit();
+                numeric -= currentSymbol.getDigit();
             } else {
                 index++;
             }
@@ -179,17 +182,17 @@ public final class ParserExpression {
         return stringBuilder.toString();
     }
 
-    private static boolean isRomeDigit(String inputData) {
+    private boolean isRomeDigit(String inputData) {
         if (Objects.isNull(inputData) || inputData.isEmpty()) return false;
         try {
-            romanToArabic(inputData);
+            romanNumericToArabic(inputData);
         } catch (DigitOutOfRangeException e) {
             return false;
         }
         return true;
     }
 
-    private static boolean isCorrectDigit(int ICount, int XCount, int CCount, int MCount, int VCount, int LCount, int DCount) {
+    private boolean isCorrectDigit(int ICount, int XCount, int CCount, int MCount, int VCount, int LCount, int DCount) {
         if (ICount > 3) return false;
         if (XCount > 3) return false;
         if (CCount > 3) return false;

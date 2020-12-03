@@ -1,6 +1,7 @@
 package ru.ndg;
 
 import ru.ndg.calculator.Calculate;
+import ru.ndg.calculator.CalculateImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import static ru.ndg.calculator.common.Operations.EXIT;
 public class Application {
     public static void main(String[] args) {
 
+        Calculate calculate = new CalculateImpl();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
                 showDialog();
@@ -19,7 +21,7 @@ public class Application {
                 if (Objects.nonNull(expression) && EXIT.getOperation().equals(expression)) {
                     break;
                 }
-                System.out.println(Calculate.getResult(expression));
+                System.out.println(calculate.getResult(expression));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
