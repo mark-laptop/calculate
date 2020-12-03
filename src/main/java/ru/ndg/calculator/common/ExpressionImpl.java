@@ -8,13 +8,13 @@ public class ExpressionImpl implements Expression {
     private int firstOperand;
     private String operation;
     private int secondOperand;
-    private boolean isRomeNumeric;
+    private boolean isRomeNumber;
 
-    public ExpressionImpl(int firstOperand, String operation, int secondOperand, boolean isRomeNumeric) {
+    public ExpressionImpl(int firstOperand, String operation, int secondOperand, boolean isRomeNumber) {
         this.firstOperand = firstOperand;
         this.operation = operation;
         this.secondOperand = secondOperand;
-        this.isRomeNumeric = isRomeNumeric;
+        this.isRomeNumber = isRomeNumber;
     }
 
     @Override
@@ -33,8 +33,8 @@ public class ExpressionImpl implements Expression {
     }
 
     @Override
-    public boolean isRomeNumeric() {
-        return isRomeNumeric;
+    public boolean isRomeNumber() {
+        return isRomeNumber;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ExpressionImpl implements Expression {
 
         if (firstOperand != that.firstOperand) return false;
         if (secondOperand != that.secondOperand) return false;
-        if (isRomeNumeric != that.isRomeNumeric) return false;
+        if (isRomeNumber != that.isRomeNumber) return false;
         return operation.equals(that.operation);
     }
 
@@ -55,7 +55,7 @@ public class ExpressionImpl implements Expression {
         int result = firstOperand;
         result = 31 * result + operation.hashCode();
         result = 31 * result + secondOperand;
-        result = 31 * result + (isRomeNumeric ? 1 : 0);
+        result = 31 * result + (isRomeNumber ? 1 : 0);
         return result;
     }
 }

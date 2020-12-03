@@ -4,7 +4,7 @@ public interface ParseExpression {
 
     Expression parse(String rawInputExpression);
 
-    String arabicNumericToRoman(int numeric);
+    String arabicNumberToRoman(int numeric);
 
-    String romanNumericToArabic(String input);
+    String romanNumberToArabic(String input);
 }

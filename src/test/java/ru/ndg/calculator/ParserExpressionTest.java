@@ -11,31 +11,31 @@ class ParserExpressionTest {
     @Test
     void arabicDigitToRomanTest() {
         ParseExpression parseExpression = new ParserExpressionImpl();
-        Assertions.assertEquals("I", parseExpression.arabicNumericToRoman(1));
-        Assertions.assertEquals("II", parseExpression.arabicNumericToRoman(2));
-        Assertions.assertEquals("III", parseExpression.arabicNumericToRoman(3));
-        Assertions.assertEquals("IV", parseExpression.arabicNumericToRoman(4));
-        Assertions.assertEquals("V", parseExpression.arabicNumericToRoman(5));
-        Assertions.assertEquals("VI", parseExpression.arabicNumericToRoman(6));
-        Assertions.assertEquals("VII", parseExpression.arabicNumericToRoman(7));
-        Assertions.assertEquals("VIII", parseExpression.arabicNumericToRoman(8));
-        Assertions.assertEquals("IX", parseExpression.arabicNumericToRoman(9));
-        Assertions.assertEquals("X", parseExpression.arabicNumericToRoman(10));
+        Assertions.assertEquals("I", parseExpression.arabicNumberToRoman(1));
+        Assertions.assertEquals("II", parseExpression.arabicNumberToRoman(2));
+        Assertions.assertEquals("III", parseExpression.arabicNumberToRoman(3));
+        Assertions.assertEquals("IV", parseExpression.arabicNumberToRoman(4));
+        Assertions.assertEquals("V", parseExpression.arabicNumberToRoman(5));
+        Assertions.assertEquals("VI", parseExpression.arabicNumberToRoman(6));
+        Assertions.assertEquals("VII", parseExpression.arabicNumberToRoman(7));
+        Assertions.assertEquals("VIII", parseExpression.arabicNumberToRoman(8));
+        Assertions.assertEquals("IX", parseExpression.arabicNumberToRoman(9));
+        Assertions.assertEquals("X", parseExpression.arabicNumberToRoman(10));
     }
 
     @Test
     void romanNumericToArabicTest() {
         ParseExpression parseExpression = new ParserExpressionImpl();
-        Assertions.assertEquals("1", parseExpression.romanNumericToArabic("I"));
-        Assertions.assertEquals("2", parseExpression.romanNumericToArabic("II"));
-        Assertions.assertEquals("3", parseExpression.romanNumericToArabic("III"));
-        Assertions.assertEquals("4", parseExpression.romanNumericToArabic("IV"));
-        Assertions.assertEquals("5", parseExpression.romanNumericToArabic("V"));
-        Assertions.assertEquals("6", parseExpression.romanNumericToArabic("VI"));
-        Assertions.assertEquals("7", parseExpression.romanNumericToArabic("VII"));
-        Assertions.assertEquals("8", parseExpression.romanNumericToArabic("VIII"));
-        Assertions.assertEquals("9", parseExpression.romanNumericToArabic("IX"));
-        Assertions.assertEquals("10", parseExpression.romanNumericToArabic("X"));
+        Assertions.assertEquals("1", parseExpression.romanNumberToArabic("I"));
+        Assertions.assertEquals("2", parseExpression.romanNumberToArabic("II"));
+        Assertions.assertEquals("3", parseExpression.romanNumberToArabic("III"));
+        Assertions.assertEquals("4", parseExpression.romanNumberToArabic("IV"));
+        Assertions.assertEquals("5", parseExpression.romanNumberToArabic("V"));
+        Assertions.assertEquals("6", parseExpression.romanNumberToArabic("VI"));
+        Assertions.assertEquals("7", parseExpression.romanNumberToArabic("VII"));
+        Assertions.assertEquals("8", parseExpression.romanNumberToArabic("VIII"));
+        Assertions.assertEquals("9", parseExpression.romanNumberToArabic("IX"));
+        Assertions.assertEquals("10", parseExpression.romanNumberToArabic("X"));
     }
 
     @Test

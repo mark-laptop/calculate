@@ -15,6 +15,15 @@ import static ru.ndg.calculator.common.Operations.SUBTRACT;
  */
 public final class CalculateImpl implements Calculate {
 
+    /**
+     * Method return result executing
+     * @param rawInputExpression input string expression
+     *
+     * @return string Roman or Arabic number
+     *
+     * @throws IncorrectInputOperationException
+     *          when the incoming operation not supported
+     * */
     @Override
     public String getResult(String rawInputExpression) {
         ParseExpression parseExpression = new ParserExpressionImpl();
@@ -36,7 +45,7 @@ public final class CalculateImpl implements Calculate {
             throw new IncorrectInputOperationException("Не верный оператор, должен быть '+, -, /, *'");
         }
 
-        return expression.isRomeNumeric() ? parseExpression.arabicNumericToRoman(result) : String.valueOf(result);
+        return expression.isRomeNumber() ? parseExpression.arabicNumberToRoman(result) : String.valueOf(result);
     }
 
     private static int divide(Expression expression) {
