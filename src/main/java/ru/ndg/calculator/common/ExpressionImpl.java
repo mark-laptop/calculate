@@ -1,7 +1,5 @@
 package ru.ndg.calculator.common;
 
-import java.util.Objects;
-
 /**
  * Сlass that contains information for evaluating an expression
  */
