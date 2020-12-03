@@ -61,7 +61,7 @@ public final class ParserExpression {
             firstOperand = Integer.parseInt(arrayInputExpression[0]);
             secondOperand = Integer.parseInt(arrayInputExpression[2]);
         } catch (NumberFormatException e) {
-            throw new IncorrectInputOperandException("Введены не корректные числа, числа должны быть олько целые!", e);
+            throw new IncorrectInputOperandException("Введены не корректные числа, числа должны быть только целые!", e);
         }
 
         if (firstOperand < 1 || firstOperand > 10 || secondOperand < 1 || secondOperand > 10) {
