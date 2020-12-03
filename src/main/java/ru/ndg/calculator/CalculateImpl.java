@@ -11,7 +11,7 @@ import static ru.ndg.calculator.common.Operations.MULTIPLY;
 import static ru.ndg.calculator.common.Operations.SUBTRACT;
 
 /**
- * Сlass for evaluating an incoming expression
+ * Сlass for evaluating an incoming expression in Arabic or Rome number
  */
 public final class CalculateImpl extends AbstractCalculator {
 

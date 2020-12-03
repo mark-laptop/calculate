@@ -3,6 +3,9 @@ package ru.ndg.calculator;
 import ru.ndg.calculator.common.Expression;
 import ru.ndg.calculator.common.ParseExpression;
 
+/**
+ * Abstract class for evaluating an incoming expression in Arabic or Rome number
+ */
 public abstract class AbstractCalculator implements Calculate {
 
     private ParseExpression parseExpression;
