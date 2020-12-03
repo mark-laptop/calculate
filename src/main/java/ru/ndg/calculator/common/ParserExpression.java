@@ -147,8 +147,14 @@ public final class ParserExpression {
     }
 
     public static String arabicDigitToRoman(int number) {
-        if ((number < 1) || (number > 4000)) {
-            throw new DigitOutOfRangeException(number + " римское число должно быть в диапазоне от 1 до 4000");
+        if (number > 4000) {
+            throw new DigitOutOfRangeException(number + " римское число должно быть не болше 4000");
+        }
+
+        boolean isNegative = false;
+        if (number < 0) {
+            isNegative = true;
+            number = number * -1;
         }
 
         List<Digit> digits = Digit.getReverseSortedValues();
@@ -156,7 +162,7 @@ public final class ParserExpression {
         int index = 0;
         StringBuilder stringBuilder = new StringBuilder();
 
-        while ((number > 0) && (index < digits.size())) {
+        while (/*(number > 0) && */(index < digits.size())) {
             Digit currentSymbol = digits.get(index);
             if (currentSymbol.getDigit() <= number) {
                 stringBuilder.append(currentSymbol.name());
@@ -164,6 +170,10 @@ public final class ParserExpression {
             } else {
                 index++;
             }
+        }
+
+        if (isNegative) {
+            return "-" + stringBuilder.toString();
         }
 
         return stringBuilder.toString();
