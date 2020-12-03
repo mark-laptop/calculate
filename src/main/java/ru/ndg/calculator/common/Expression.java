@@ -8,5 +8,5 @@ public interface Expression {
 
     int getSecondOperand();
 
-    boolean isRomeDigit();
+    boolean isRomeNumeric();
 }

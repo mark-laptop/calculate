@@ -36,7 +36,7 @@ public final class CalculateImpl implements Calculate {
             throw new IncorrectInputOperationException("Не верный оператор должен быть '+, -, /, *'");
         }
 
-        return expression.isRomeDigit() ? parseExpression.arabicNumericToRoman(result) : String.valueOf(result);
+        return expression.isRomeNumeric() ? parseExpression.arabicNumericToRoman(result) : String.valueOf(result);
     }
 
     private static int divide(Expression expression) {
