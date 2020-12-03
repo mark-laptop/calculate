@@ -13,7 +13,11 @@ import static ru.ndg.calculator.common.Operations.SUBTRACT;
 /**
  * Сlass for evaluating an incoming expression
  */
-public final class CalculateImpl implements Calculate {
+public final class CalculateImpl extends AbstractCalculator {
+
+    public CalculateImpl(ParseExpression parseExpression) {
+        super(parseExpression);
+    }
 
     /**
      * Method return result executing
@@ -26,8 +30,7 @@ public final class CalculateImpl implements Calculate {
      * */
     @Override
     public String getResult(String rawInputExpression) {
-        ParseExpression parseExpression = new ParserExpressionImpl();
-        Expression expression = parseExpression.parse(rawInputExpression);
+        Expression expression = getParseExpression().parse(rawInputExpression);
 
         int result;
 
@@ -45,22 +48,6 @@ public final class CalculateImpl implements Calculate {
             throw new IncorrectInputOperationException("Не верный оператор, должен быть '+, -, /, *'");
         }
 
-        return expression.isRomeNumber() ? parseExpression.arabicNumberToRoman(result) : String.valueOf(result);
-    }
-
-    private static int divide(Expression expression) {
-        return expression.getFirstOperand() / expression.getSecondOperand();
-    }
-
-    private static int multiply(Expression expression) {
-        return expression.getFirstOperand() * expression.getSecondOperand();
-    }
-
-    private static int add(Expression expression) {
-        return expression.getFirstOperand() + expression.getSecondOperand();
-    }
-
-    private static int subtract(Expression expression) {
-        return expression.getFirstOperand() - expression.getSecondOperand();
+        return expression.isRomeNumber() ? getParseExpression().arabicNumberToRoman(result) : String.valueOf(result);
     }
 }

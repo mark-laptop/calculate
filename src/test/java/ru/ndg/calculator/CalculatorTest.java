@@ -2,12 +2,13 @@ package ru.ndg.calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.ndg.calculator.common.ParserExpressionImpl;
 
 class CalculatorTest {
 
     @Test
     void getResultTest() {
-        Calculate calculate = new CalculateImpl();
+        Calculate calculate = new CalculateImpl(new ParserExpressionImpl());
         Assertions.assertEquals("II", calculate.getResult("I + I"));
         Assertions.assertEquals("III", calculate.getResult("II + I"));
         Assertions.assertEquals("XII", calculate.getResult("IV * III"));

@@ -2,6 +2,7 @@ package ru.ndg;
 
 import ru.ndg.calculator.Calculate;
 import ru.ndg.calculator.CalculateImpl;
+import ru.ndg.calculator.common.ParserExpressionImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import static ru.ndg.calculator.common.Operations.EXIT;
 public class Application {
     public static void main(String[] args) {
 
-        Calculate calculate = new CalculateImpl();
+        Calculate calculate = new CalculateImpl(new ParserExpressionImpl());
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
                 showDialog();
